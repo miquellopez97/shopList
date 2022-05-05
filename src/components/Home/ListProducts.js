@@ -8,21 +8,25 @@ function Component(props) {
 
     return (
         <>
-            <tbody>
-                <tr>
-                    <th>Name</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                </tr>
-                {props.shopList && props.shopList.map((el) =>
-                    <Element
-                        name={el.name}
-                        quantity={el.quantity}
-                        price={el.price}
-                        key={randomNum}
-                    />
-                )}
-            </tbody>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {props.shopList && props.shopList.map((el) =>
+                        <Element
+                            name={el.name}
+                            quantity={el.quantity}
+                            price={el.price}
+                            key={randomNum}
+                        />
+                    )}
+                </tbody>
+            </table>
         </>
     );
 }

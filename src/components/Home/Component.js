@@ -25,7 +25,7 @@ function Component() {
         { name: 'Sashimi variat', quantity: 1, price: 9 }
     ];
 
-    const [shopList, setShopList] = useState([defaultData]);
+    const [shopList, setShopList] = useState(defaultData);
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -36,13 +36,9 @@ function Component() {
             price: priceInputRef.current.value,
         };
 
-        // setShopList(shopList[0].add(product));
+        setShopList(prev => prev.push(product))
         console.log(product);
     };
-
-    // useEffect(() => {
-    //     setShopList(shopList[0].add(product))
-    // }, []);
 
     return (
         <>
@@ -51,9 +47,9 @@ function Component() {
                 nameInput={nameInputRef}
                 quantityInput={quantityInputRef}
                 priceInput={priceInputRef}
-                onLoginButton={handleLogin}
+                onSubmitButton={handleLogin}
             />
-            <List shopList={shopList[0]} />
+            <List shopList={shopList} />
         </>
     );
 }
