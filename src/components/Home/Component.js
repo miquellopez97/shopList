@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Form from "./Form";
 import List from "./ListProducts";
 
@@ -29,13 +29,20 @@ function Component() {
 
     const handleLogin = (event) => {
         event.preventDefault();
+
         const product = {
-            productName: nameInputRef.current.value,
-            productQuantity: quantityInputRef.current.value,
-            productPrice: priceInputRef.current.value,
-        }
-        setShopList(product);
+            name: nameInputRef.current.value,
+            quantity: quantityInputRef.current.value,
+            price: priceInputRef.current.value,
+        };
+
+        // setShopList(shopList[0].add(product));
+        console.log(product);
     };
+
+    // useEffect(() => {
+    //     setShopList(shopList[0].add(product))
+    // }, []);
 
     return (
         <>
@@ -46,7 +53,7 @@ function Component() {
                 priceInput={priceInputRef}
                 onLoginButton={handleLogin}
             />
-            <List shopList={shopList} />
+            <List shopList={shopList[0]} />
         </>
     );
 }

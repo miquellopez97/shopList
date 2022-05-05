@@ -18,7 +18,7 @@ function Component(props) {
                     <Element
                         name={el.name}
                         quantity={el.quantity}
-                        price={el.country}
+                        price={el.price}
                         key={randomNum}
                     />
                 )}
