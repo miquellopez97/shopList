@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useContext} from "react";
 import Element from "./Element";
-import {randomNum} from "../../assets/helper";
+import shoplistContext from '../../context/shopListContext';
 
 
-function Component(props) {
 
+function Component(props) {    
+    const {shopListProducts, setQuantityProduct} = useContext(shoplistContext);
 
     return (
         <>
@@ -17,16 +18,18 @@ function Component(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.shopList && props.shopList.map((el) =>
+                    {shopListProducts && shopListProducts.map((el) =>
                         <Element
+                            functionSetQuantityProduct={setQuantityProduct}
+                            id={el.id}
                             name={el.name}
                             quantity={el.quantity}
                             price={el.price}
-                            key={randomNum}
                         />
                     )}
                 </tbody>
             </table>
+            <p>Total price: {props.totalPrice}€</p>
         </>
     );
 }
