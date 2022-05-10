@@ -1,6 +1,7 @@
 import React from "react";
 
 function Form(props) {
+    //**********************Declaramos los inputs que queremos y la funcion (Mismos nombres que el Component!)**************************** */
     const { nameInput, quantityInput, priceInput, onSubmitButton } = props;
 
     return (

@@ -3,6 +3,7 @@ import classes from './Input.module.css';
 
 function Input(props) {
   const [prevPropsValue, setPrevPropsValue] = useState('');
+  const [inputIsValid, setInputIsValid] = useState(null);
 
   useEffect(() => {
     if (prevPropsValue === props.value) {
@@ -10,11 +11,27 @@ function Input(props) {
     }
     const timer = setTimeout(() => {
       setPrevPropsValue(props.value);
-      props.onChangeValidity();
+      setInputIsValid(validationFunction(props.value));
     }, 500);
 
     return () => clearTimeout(timer);
   }, [props, prevPropsValue]);
+
+  const validationFunction = (value) => {
+    const regex = new RegExp("^[a-zA-z0-9]+$");
+    let isValid = regex.test(value);
+
+    if(isValid){
+      setInputIsValid(value)
+    }else if(value === ''){
+      setInputIsValid(null)
+      isValid = true;
+    }else {
+      setInputIsValid(false);
+    }
+
+    return isValid;
+  }
 
   return (
     <div>
@@ -23,10 +40,7 @@ function Input(props) {
         type={props.type}
         id={props.id}
         name={props.id}
-        className={`
-          ${classes.input} 
-          ${props.isValid === false ? classes.invalid : ''} 
-          ${props.className}`}
+        className={inputIsValid === false ? classes.invalid : classes.valid}
         value={props.value}
         onChange={props.onChange}
         onBlur={props.onBlur}

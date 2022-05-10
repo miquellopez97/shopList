@@ -4,7 +4,8 @@ import shoplistContext from '../../context/shopListContext';
 
 
 
-function Component(props) {    
+function Component(props) {
+    //**********************Definir Contexto**************************** */    
     const {shopListProducts, setQuantityProduct} = useContext(shoplistContext);
 
     return (

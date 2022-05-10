@@ -9,3 +9,8 @@
   background-color: rgb(248, 183, 183);
   border-color: rgb(248, 95, 95) !important;
 }
+
+.valid {
+  background-color: greenyellow;
+  border-color: green !important;
+}
