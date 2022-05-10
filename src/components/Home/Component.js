@@ -68,10 +68,40 @@ function Component() {
         return isValid;
     }
 
+    const [count, setCount] = useState(0);
+
+    function upOne() {
+        setCount(count + 1);
+    }
+
+    function decOne() {
+        setCount(count - 1);
+    }
+
+    useEffect(() => {
+        if(count === 0){
+            return;
+        };
+    
+        const timer = setTimeout(()=>{
+            decOne();
+        },1000);
+    
+        return () => {
+            clearTimeout(timer);
+        }
+    
+    },[count]);
+
     return (
         <>
             <h2>Comprobar input</h2>
             <input onChange={(e) => setValueInput(e.target.value)} value={valueInput} className={inputIsValid === false ? classes.invalid : ''}/>
+
+            <h2>Temporizador</h2>
+            <p>{count}</p>
+            <button onClick={upOne}>+</button>
+            <button onClick={decOne}>-</button>
 
             <h2>Modificar Context</h2>
             <Form
